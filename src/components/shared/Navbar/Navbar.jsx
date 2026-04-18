@@ -18,10 +18,12 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
 
   // Mock User - Replace with your AuthContext logic
-  const user = {
-    displayName: "Peyas Barmon",
-    photoURL: "https://i.ibb.co/mS7ST9X/user.png",
-  };
+  // const user = {
+  //   displayName: "Peyas Barmon",
+  //   photoURL: "https://i.ibb.co/mS7ST9X/user.png",
+  // };
+
+  const user = false;
 
   // Theme Toggle Logic
   useEffect(() => {
@@ -92,7 +94,8 @@ const Navbar = () => {
             {/* Theme Switcher */}
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-yellow-400 hover:ring-2 ring-blue-500 transition-all"
+              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-yellow-400
+               hover:ring-2 ring-blue-500 transition-all"
             >
               {isDark ? <FaSun size={18} /> : <FaMoon size={18} />}
             </button>
