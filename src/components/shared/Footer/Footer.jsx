@@ -1,114 +1,148 @@
 import { Link } from "react-router";
 import {
-  FaFacebook,
-  FaLinkedin,
+  FaFacebookF,
+  FaLinkedinIn,
   FaGithub,
   FaMapMarkerAlt,
   FaPhoneAlt,
+  FaEnvelope,
+  FaChevronRight,
 } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-base-200 text-base-content border-t border-base-300">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="footer grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Brand Section */}
-          <aside className="flex flex-col gap-4">
-            <Link
-              to="/"
-              className="flex items-center gap-2 text-2xl font-bold italic tracking-tighter"
-            >
-              <span className="bg-primary text-white p-1 rounded-lg">CH</span>
-              <span>ContestHub</span>
+    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 pt-16 pb-8 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Column 1: Brand & About */}
+          <div className="space-y-6">
+            <Link to="/" className="flex items-center gap-2 group">
+              <div className="bg-blue-600 text-white p-1.5 rounded-lg">
+                <span className="font-black text-lg">CH</span>
+              </div>
+              <span className="text-xl font-bold tracking-tight text-gray-900 dark:text-white uppercase">
+                Contest<span className="text-blue-600">Hub</span>
+              </span>
             </Link>
-            <p className="max-w-xs text-base-content/70">
-              The ultimate platform to create, discover, and participate in
-              creative contests worldwide. Join the community and showcase your
-              talent.
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Empowering creators and competitors worldwide. Join our platform
+              to showcase your skills, win prizes, and grow your professional
+              portfolio.
             </p>
-
-            {/* Social Links */}
-            <div className="flex gap-4 mt-2">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-2xl hover:text-blue-600 transition-all hover:scale-110"
-                aria-label="Facebook"
-              >
-                <FaFacebook />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-2xl hover:text-blue-700 transition-all hover:scale-110"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-2xl hover:text-gray-800 dark:hover:text-white transition-all hover:scale-110"
-                aria-label="GitHub"
-              >
-                <FaGithub />
-              </a>
+            <div className="flex space-x-4">
+              {[
+                {
+                  icon: <FaFacebookF />,
+                  link: "#",
+                  color: "hover:bg-blue-600",
+                },
+                {
+                  icon: <FaLinkedinIn />,
+                  link: "#",
+                  color: "hover:bg-blue-700",
+                },
+                {
+                  icon: <FaGithub />,
+                  link: "#",
+                  color: "hover:bg-gray-800 dark:hover:bg-blue-500",
+                },
+              ].map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.link}
+                  className={`w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 shadow-sm border border-gray-200 dark:border-gray-700 transition-all ${social.color} hover:text-white`}
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
-          </aside>
+          </div>
 
-          {/* Quick Links */}
-          <nav>
-            <header className="footer-title opacity-100 text-primary font-bold">
-              Quick Links
-            </header>
-            <Link to="/" className="link link-hover">
-              Home
-            </Link>
-            <Link to="/all-contests" className="link link-hover">
-              All Contests
-            </Link>
-            <Link to="/leaderboard" className="link link-hover">
-              Leaderboard
-            </Link>
-            <Link to="/about" className="link link-hover">
-              About Us
-            </Link>
-          </nav>
+          {/* Column 2: Quick Navigation */}
+          <div>
+            <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-6">
+              Platform
+            </h3>
+            <ul className="space-y-4">
+              {["Home", "All Contests", "Leaderboard", "Extra Section"].map(
+                (item) => (
+                  <li key={item}>
+                    <Link
+                      to={`/${item.toLowerCase().replace(" ", "-")}`}
+                      className="group flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    >
+                      <FaChevronRight className="text-[10px] mr-2 opacity-0 group-hover:opacity-100 transition-all transform -translate-x-2 group-hover:translate-x-0" />
+                      {item}
+                    </Link>
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
 
-          {/* Contact Information */}
-          <section>
-            <header className="footer-title opacity-100 text-primary font-bold">
+          {/* Column 3: Contact Info */}
+          <div>
+            <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-6">
               Contact Us
-            </header>
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-primary" />
-                <span>123 Innovation Drive, Dhaka, BD</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <FaPhoneAlt className="text-primary" />
-                <span>+880 1234 567890</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MdEmail className="text-primary text-lg" />
+            </h3>
+            <ul className="space-y-4 text-gray-600 dark:text-gray-400">
+              <li className="flex items-start gap-3">
+                <FaMapMarkerAlt className="mt-1 text-blue-600" />
+                <span>
+                  123 Innovation St, Tech Plaza
+                  <br />
+                  Dhaka, Bangladesh
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <FaPhoneAlt className="text-blue-600" />
+                <span>+880 1234 567 890</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <FaEnvelope className="text-blue-600" />
                 <span>support@contesthub.com</span>
-              </div>
-            </div>
-          </section>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Newsletter/CTA */}
+          <div>
+            <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-6">
+              Stay Updated
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">
+              Subscribe to get notifications about new contests.
+            </p>
+            <form className="flex flex-col gap-2">
+              <input
+                type="email"
+                placeholder="Enter email"
+                className="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white text-sm"
+              />
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition-colors text-sm">
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="footer footer-center p-4 border-t border-base-300 mt-10 pt-8">
-          <aside>
-            <p className="text-sm text-base-content/60">
-              Copyright © 2025 - All rights reserved by{" "}
-              <span className="font-semibold text-primary">ContestHub</span>
-            </p>
-          </aside>
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-gray-500 dark:text-gray-500">
+            © {currentYear}{" "}
+            <span className="font-semibold text-blue-600">ContestHub</span>. All
+            rights reserved.
+          </p>
+          <div className="flex gap-6 text-sm text-gray-500 dark:text-gray-500">
+            <a href="#" className="hover:text-blue-600 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-blue-600 transition-colors">
+              Terms of Service
+            </a>
+          </div>
         </div>
       </div>
     </footer>
